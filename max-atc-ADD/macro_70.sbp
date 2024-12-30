@@ -12,17 +12,17 @@ $tools[1].Z := 0
 $tools[1].H := -5
 
 $unitMultiplier = 1
-IF %(25) = 0 THEN GOTO SETUPVALUES
+IF %(25)== 0 THEN GOTO SETUPVALUES
 $unitMultiplier = 25.4
 SETUPVALUES:
 'Motion values
 $zSlow = 0.4 * $unitMultiplier
 $zFast = 0.75 * $unitMultiplier
-$zJog = 1.0 * $unitMultiplier
+$zJog = 2.0 * $unitMultiplier
 
 $xySlow = 0.4 * $unitMultiplier
-$xyFast = 1.0 * $unitMultiplier
-$xyJog = 6.0 * $unitMultiplier
+$xyFast = 2.0 * $unitMultiplier
+$xyJog = 5.0 * $unitMultiplier
 
 $smallBackOff = 0.5 * $unitMultiplier
 $bigBackOff = 2.0 * $unitMultiplier
