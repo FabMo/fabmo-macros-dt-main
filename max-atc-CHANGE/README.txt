@@ -1,1 +1,0 @@
-This folder anticipates the possibility that a common base file might need a special version for the ATC -- hopefully not.
