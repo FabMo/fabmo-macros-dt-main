@@ -9,7 +9,7 @@
 
 ' Initialize ------------------------------------------------------------------------------------------
     &AtNow = "Initialize"
-	C75                                                               ' >> Load primary ATC variables and ck status
+    C75                                                               ' >> Load primary ATC variables and ck status
     JS, $XYJOG, $ZJOG                                                 ' >> Set Jog speed for approaches (are units right here and following ???)
     &tool := ""                                                       ' >> Define as something initially
     &INDEX := 0                                                       ' >> Need to initialize tool data
@@ -37,13 +37,13 @@ StashTool: '  PUT A TOOL BACK INTO ITS CLIP
     &INDEX = $ATC.ToolIn                                            ' >> Parameter for GET_TOOL_DATA
     GOSUB GET_TOOL_DATA                                             ' >> Loads tool clip location and tool length
     ' BEGIN Physical STASH
-    	IF %(1) > &tx + $ATC_clipSafe THEN JX, &tx + $ATC_clipSafe  ' >> If we're behind toolbar for some reason. Move in X only to clear toolbar
-    	J2, &tx + $ATC_clipSafe, &ty                                ' >> Move to safe spot in front of intended clip
-    	JZ, &tz                                                     ' >> Jog to Z height for intended clip 
-    	JX, &tx + $ATC_clipSafe / 4                                 ' >> Move partway in ...
-    	SO, $DrawBar, 1                                             ' >> Open toolholder chuck
-    	MX, &tx                                                     ' >> Final Move into clip
-    	JZ, &tz + $thClearance                                      ' >> Pull up to twice the clearance height for toolholder
+        IF %(1) > &tx + $ATC_clipSafe THEN JX, &tx + $ATC_clipSafe  ' >> If we're behind toolbar for some reason. Move in X only to clear toolbar
+        J2, &tx + $ATC_clipSafe, &ty                                ' >> Move to safe spot in front of intended clip
+        JZ, &tz                                                     ' >> Jog to Z height for intended clip 
+        JX, &tx + $ATC_clipSafe / 4                                 ' >> Move partway in ...
+        SO, $DrawBar, 1                                             ' >> Open toolholder chuck
+        MX, &tx                                                     ' >> Final Move into clip
+        JZ, &tz + $thClearance                                      ' >> Pull up to twice the clearance height for toolholder
         SO, $DrawBar,0                                              ' >> And Close the toolholder chuck
         PAUSE 0.25
         &State = 1                                                  ' >> Set proper tool sensor state for check_tool subroutine
