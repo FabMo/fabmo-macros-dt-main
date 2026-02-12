@@ -12,7 +12,7 @@ $sb_current_cutter_ZoffsetUU[] := .25                             ' Initialize t
 
 '--- Preliminary ATC Status Checks (for optional ATC)
 IF $ATC.Type == 0 THEN GOTO OK
-CN,75
+CN,75                                                             ' ATC status check and load CN,70                                                             ' Load ATC Varibles (and local variables from #201)
 OK:
 
 ' === Main Program =============
@@ -68,14 +68,14 @@ home_y:
     ZY
     &change_Offset_Y = %(8)+ &homeOff_Y
     JY, &homeOff_Y
-	VA,,0,,,,,,0,,,,                                     
+	VA,,0,,,,,,0,,,,
 
-    PAUSE "XY Homing Complete.", OKTEXT="Continue ..."
+    DIALOG "XY Homing Complete <br> (... will continue in 5 sec)", TIMER=6, NOBUTTON=true
     RETURN
 END
 
 ' --- Checks and Failures ---
-  backOffProx_if_needed:                                          ' Managing prox switches is complicated by multiple arrangements
+  backOffProx_if_needed:                                        ' Managing prox switches is complicated by multiple arrangements
       &proxTriggered = 0
       GOSUB checkProxs
       IF &proxTriggered == 1 THEN GOSUB handleBackOff
@@ -117,12 +117,16 @@ END
 
 initialize_local_variables:
     &u = %(25)                                                     ' Set current UNIT index
+
     &proxNum_Z = $sb_proxNum.z
     &check_prox_Z = $sb_proxCk.z							  
     &proxNum_X = $sb_proxNum.x
     &check_prox_X = $sb_proxCk.x							  
     &proxNum_Y = $sb_proxNum.y
-    &check_prox_Y = $sb_proxCk.y							  
+    &check_prox_Y = $sb_proxCk.y
+    &zZeroNum = $sb_zZeroNum
+    &zZeroCk = $sb_zZeroCk
+							  
 	&target_ck = 0
 	&ooch = $sb_oochUU[&u]
 	&backOff_dist = &ooch * 5

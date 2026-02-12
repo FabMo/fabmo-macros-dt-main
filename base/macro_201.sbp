@@ -14,14 +14,13 @@ $sb_dtType               = 3        ' 2=DTmax; 3=DT3
 $sb_proxNum.x            = 3        '- (m3,?)  ... usually input 2 or 3; if using as system var; number = Input# + 50 
 $sb_proxNum.y            = 3        '- (m3,?)  ... usually input 2 or 3
 $sb_proxNum.z            = 3        '- (m2,m3,?) ... usually input 2 or 5
-$sb_proxType             = 0        '- 0=normally-open; 1=normally-closed (tools consistently use one or the other)
 $sb_zZeroNum             = 1        '- (m2,?) ... usually 1; if using as system var; number = Input# + 50
+$sb_proxType             = 0        '- 0=normally-open; 1=normally-closed (tools consistently use one or the other)
 
 'Derived Switch Values:				'- for convenience, pre-compute switch "system numbers" needed for switch reads (equals # + 50)
 $sb_proxCk.x = $sb_proxNum.x + 50
 $sb_proxCk.y = $sb_proxNum.y + 50
 $sb_proxCk.z = $sb_proxNum.z + 50
-'Derived Plate Value:				'- for convenience, pre-compute switch "system number" needed for input read (equals # + 50)
 $sb_zZeroCk = $sb_zZeroNum + 50
 
 $sb_zPlateType           = "STD"    '- PRESS; 3D; STD ... use this eventually to select type

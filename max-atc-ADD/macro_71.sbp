@@ -10,8 +10,10 @@
 ' Initialize ------------------------------------------------------------------------------------------
     &debug = 0    
     &AtNow = "Initialize"
+    &u = %(25)
+    
     CN,75                                                             ' Load primary ATC variables and ck status (calls CN 70)
-    JS, $XYJOG, $ZJOG                                                 ' Set Jog speed for approaches (are units right here and following ???)
+    JS, $XYJOGUU[&u], $ZJOGUU[&u]                                     ' Set Jog speed for approaches (are units right here and following ???)
     &tool := ""                                                       ' Define as something initially
     &INDEX := 0                                                       ' Need to initialize tool data
     GOSUB GET_TOOL_DATA                                               ' ... by reading table
@@ -42,11 +44,11 @@ StashTool: '  PUT A TOOL BACK INTO ITS CLIP
         IF %(1) > &tx + $atcUU[&u].clipSafe THEN JX, &tx + $atcUU[&u].clipSafe  ' If we're behind toolbar for some reason. Move in X only to clear toolbar
         J2, &tx + $atcUU[&u].clipSafe, &ty                          ' Move to safe spot in front of intended clip
         JZ, &tz                                                     ' Jog to Z height for intended clip 
-        JX, &tx +$atcUU[&u].clipSafe / 4                            ' Move partway in ...
+        JX, &tx + $atcUU[&u].clipSafe / 4                           ' Move partway in ...
         SO, $DrawBar, 1                                             ' Open toolholder chuck
         MX, &tx                                                     ' Final Move into clip
-        JZ, &tz + $thClearanceUU[&u]                                      ' Pull up to twice the clearance height for toolholder
-        SO, $DrawBar,0                                              ' And Close the toolholder chuck
+        JZ, &tz + $thClearanceUU[&u]                                ' Pull up to twice the clearance height for toolholder
+        SO, $DrawBar, 0                                             ' And Close the toolholder chuck
         PAUSE 0.25
         &State = 1                                                  ' Set proper tool sensor state for check_tool subroutine
         IF &Debug == 0 THEN GOSUB AUTO_CHECK_TOOL                   ' Check if tool is still in spindle!
@@ -65,11 +67,11 @@ GrabTool: '  REMOVE A TOOL FROM ITS CLIP
     IF &tool == 0 THEN GOSUB FinishToolChange                       ' No pickup required, leave with spindle empty
     ' BEGIN Physical Grab
         J2, &tx, &ty                                                ' ... move to the clip location 
-        JZ, &tz + $thClearanceUU[&u]                                      ' Get clear in Z then 
-        SO, $DrawBar,1                                              ' Open toolholder chuck
+        JZ, &tz + $thClearanceUU[&u]                                ' Get clear in Z then 
+        SO, $DrawBar, 1                                             ' Open toolholder chuck
         IF &Debug == 0 THEN GOSUB AUTO_CHECK_BAR_OPEN               ' Give 3 tries to check if drawbar opened properly
         MZ, &tz                                                     ' ## Move Onto Toolholder ##
-        SO, $DrawBar,0                                              ' Close toolholder chuck
+        SO, $DrawBar, 0                                             ' Close toolholder chuck
         &State = 1                                                  ' Set proper tool sensor state for check_tool subroutine
         IF &Debug == 0 THEN GOSUB AUTO_CHECK_TOOL                   ' Give 3 tries to check if tool clamped properly
         $ATC.ToolIN = &tool                                         ' Update value of ToolIn
@@ -124,7 +126,7 @@ FinishToolChange:
     RETURN
 
 JOG_HOME:
-    J2,&tx,&ty
+    J2, &tx, &ty
     RETURN
 ' +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 STATE: ' Report State at points in ATC Sequence (call with a GOSUB STATE to debug)
@@ -132,7 +134,6 @@ STATE: ' Report State at points in ATC Sequence (call with a GOSUB STATE to debu
     RETURN
 ' +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 GET_TOOL_DATA:
-    &u = %(25)
     &tx = $toolsUU[&INDEX][&u].x - %(7) + $sb_homeOffUU[&u].x    ' Tool Clip X Location
     &ty = $toolsUU[&INDEX][&u].y - %(8) + $sb_homeOffUU[&u].y    ' Tool Clip Y Location
     &tz = $toolsUU[&INDEX][&u].z - %(9)                          ' Tool Clip Z Location

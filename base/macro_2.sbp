@@ -104,11 +104,13 @@ END
 
 initialize_local_variables:
     &u = %(25)                                                ' Local UNIT index
+
     &safeZ_pullup = %(28)									  ' Read safeZ-pullup from system variables
     &proxNum_Z = $sb_proxNum.z
     &check_prox_Z = $sb_proxCk.z							  
     &zZeroNum = $sb_zZeroNum
     &zZeroCk = $sb_zZeroCk
+
     &target_ck = 0
 	&ooch = $sb_oochUU[&u]
 	&backOff_dist = &ooch * 5
