@@ -1,6 +1,3 @@
-'!FABMO!name:ATC Calibrate
-'!FABMO!description:Initial calibration of Tool-Clip location for ATC
-'!FABMO!enabled:true
 ' ATC Calibration; records location of all the tool clips.
 ' Brian Owen
 ' Refactored 2/09/2026 (th)
