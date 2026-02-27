@@ -4,7 +4,7 @@
 ' Name:  STANDARD FABMO MACRO VARIABLES
 ' Description:  Set Values for Standard Variables used in Macros
 ' Author: Ryan Sturmer, Brendan Collins
-' 2026/2/12 - Refactored (th)
+' 2026/2/27 - Made search distances longer (bo)
 
 '   **NOTE:   " := "  Is an OpenSBP function ("weak assign") to set a variable; BUT only if not previously defined! 
 
@@ -84,8 +84,8 @@ SetUniversalUnits:
    '$sb_slowSearchSpeedUU[].a
    '$sb_slowSearchSpeedUU[].b
    '$sb_slowSearchSpeedUU[].c
-    $sb_searchDistUU[].x        = 36
-    $sb_searchDistUU[].y        = 26
+    $sb_searchDistUU[].x        = 40 'Longer than X cutting area to be sure we hit limit!
+    $sb_searchDistUU[].y        = 30 'Longer than Y cutting area to be sure we hit limit!
     $sb_searchDistUU[].z        = 6
    '$sb_searchDistUU[].a
    '$sb_searchDistUU[].b
