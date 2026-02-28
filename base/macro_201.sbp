@@ -8,7 +8,7 @@
 
 '   **NOTE:   " := "  Is an OpenSBP function ("weak assign") to set a variable; BUT only if not previously defined! 
 
-' STANDARD MACRO VARIABLES =========(stored as persistent variables with "$sb" prefix; e.g., $sb_varName)====================================================================
+' STANDARD MACRO VARIABLES =========(stored as persistent variables with "$sb" prefix; e.g., $sb_varName)=========================
                                     ' Standard Macro Variables are defined and read from this Macro 201 (CN,201)
                                     ' Because these variables are regularly read with homing and tool change macros,
                                     ' then they will be regularly reset to values here, if they have NOT been weak assigned with ":=".
@@ -93,7 +93,7 @@ SetUniversalUnits:
 
     $sb_oochUU[]                = .05      '- generic short distance used for pull backs and target adjustments
 
-    $sb_zPlateThickUU[]         = 0.118
+    $sb_zPlateThickUU[]         := 0.118
     '  - 0.118" for std plate, your plate may be slightly different
     '  - To instead use ShopBot pressure plate, change $sb_ZZeroNum to 5, and adjust plate thickness to 0.57
 
