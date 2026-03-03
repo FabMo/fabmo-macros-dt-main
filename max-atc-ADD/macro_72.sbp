@@ -81,7 +81,7 @@ AUTO_POSITION:
     RETURN
 
 CHOOSE_TOOL:
-    PAUSE "Bit number to Zero:  (0 for all)" &tool                    ' Prompt user for desired tool
+    PAUSE "Bit number to Measure:  (0 for all)" &tool                 ' Prompt user for desired tool
     IF &tool >= 0 THEN &VALID_TOOL = 1                                ' If the tool is greater than or equal to 0 then it is valid
     IF &tool == 0 THEN &ALL_TOOLS = 1                                 ' If the tool is 0 then we're measuring all tools
     RETURN
