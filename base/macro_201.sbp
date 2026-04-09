@@ -108,7 +108,7 @@ SetUniversalUnits:              ' *** these are INCH values that will be used fo
     $sb_changePosUU[].y         := 4
     $sb_changePosUU[].z         := 1
 
-    $sb_squaringMoveUU[]        = .75      '- for Desktops (in Macro 10)
+    $sb_squaringMoveUU[]        = 4.0       '- for Desktops (in Macro 10)
     $sb_squaringJerkUU[]        = 1000
 
     $sb_current_cutter_ZoffsetUU[] = -.25  '- used in multiple macros for non-ATC tools
