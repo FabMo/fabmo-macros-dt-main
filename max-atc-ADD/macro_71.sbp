@@ -127,7 +127,7 @@ FinishToolChange:
     RETURN
     
 FinishToolChangeWithNoTool:
-	VA,,,&tz - ((&th + $atcUU[&u].PlateOffset) + &Z_OFFSET) + %(9)
+	VA,,,%(3) - ((&th + $atcUU[&u].PlateOffset) + &Z_OFFSET) + %(9)
     &AtNow = "Wrapping Up with no Tool"
     &TL = &th + $atcUU[&u].PlateOffset + $atcUU[&u].MaxDepth         ' Figure out Z limit to prevent cutting into table
     VL,,,,,&TL                                                       ' Update Z limits
