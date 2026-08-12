@@ -27,7 +27,7 @@ OK:
     &xyHOMED = false
     Z3    ' Zeoring all axes at their current location (sets worst case homing distances)
     GOSUB backOffProx_if_needed
-    GOSUB home_z
+    IF $sb_hasZProx = 1 THEN GOSUB home_z
     IF $sb_dtType == 3 THEN GOTO X_first                                 ' Standard Desktop has X on Gantry so different layout
     GOSUB home_y
         'Center Y
