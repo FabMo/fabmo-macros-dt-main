@@ -35,7 +35,7 @@ OK:
     GOSUB home_y
         'Center Y
         &ymax = %machine.envelope.ymax
-        MY, (&ymax / 2)
+        MY, (&ymax / 2) - $sb_homeOffUU[&u].y
     GOSUB home_x
     GOTO finish
 
@@ -43,7 +43,7 @@ X_first:
     GOSUB home_x
         'Center X
         &xmax = %machine.envelope.xmax
-        MX, (&xmax / 2)
+        MX, (&xmax / 2) - $sb_homeOffUU[&u].x
     GOSUB home_y
 
 finish:
@@ -64,6 +64,8 @@ home_z:
     PZ, &target_ck, $sb_slowSearchSpeedUU[&u].z, $sb_proxNum.z       ' Slowly probe for prox in final accurate check
     IF %(3) == &target_ck THEN GOSUB fail_missed_target              ' Look at current Z location to see if we went past the target
     ZZ                                                               ' If OK, reset working zero again to do the pullback
+    $sb_lastVarianceHomeUU[].z = $sb_homeOffUU[&u].z - %(9)
+        'DIALOG "Last variance for Z home =  " + $sb_lastVarianceHomeUU[&u].z
     JZ, (-1 * $sb_homeOffUU[&u].z)
 
     IF $ATC.Type = 0 THEN GOTO SET_TABLE_BASE                        ' If not an ATC then also Set Table Base Zero
@@ -84,6 +86,8 @@ home_x:
     PX, &target_ck, $sb_slowSearchSpeedUU[&u].xy, $sb_proxNum.x      ' Slowly probe for prox in final accurate check
     IF %(1)== &target_ck THEN GOSUB fail_missed_target               ' Look at current X location to see if we went past the target
     ZX
+    $sb_lastVarianceHomeUU[].x = $sb_homeOffUU[&u].x + %(7)
+        'DIALOG "Last variance for X home =  " + $sb_lastVarianceHomeUU[&u].x
     JX, $sb_homeOffUU[&u].x
     VA,0,,,,,,0,,,,,                                                 ' Set 0 location and Table Base Zero                                   
     RETURN
@@ -96,6 +100,8 @@ home_y:
     PY, &target_ck, $sb_slowSearchSpeedUU[&u].xy, $sb_proxNum.y 
     IF %(2)== &target_ck THEN GOSUB fail_missed_target
     ZY
+    $sb_lastVarianceHomeUU[].y = $sb_homeOffUU[&u].y + %(8)
+        'DIALOG "Last variance for Y home =  " + $sb_lastVarianceHomeUU[&u].y
     JY, $sb_homeOffUU[&u].y
     VA,,0,,,,,,0,,,,
     RETURN
