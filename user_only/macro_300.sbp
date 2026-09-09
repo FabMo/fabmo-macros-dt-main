@@ -12,3 +12,4 @@
 ' The idea will be that macro 301 will be automatically read along with 201, but will only conatin user set
 '     variables or initiations. This file will not be overwritten by FabMo updates, but should be save when
 '     user profiles are created.
+' Macros above 301 will also be reserved for user-defined macros and should not be modified by FabMo updates.
