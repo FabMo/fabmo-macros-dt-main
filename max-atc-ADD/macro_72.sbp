@@ -5,6 +5,7 @@
 ' Description: Measure the length of ATC cutting tools
 ' Author: Brian Owen
 ' 2026/2/12 - Refactored (th)
+' 2026/9/28 - fix plate location (th)
 
 
 &u = %(25)

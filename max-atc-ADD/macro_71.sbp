@@ -5,7 +5,8 @@
 ' Description: - internal -
 ' Author: Brian Owen, Josh Ayers
 ' 2026/2/27 - Added handling for changing to bit 0 (bo)
-' 2026/8/25/ - initialize &CURRENT_TOOL (th)
+' 2026/8/25 - initialize &CURRENT_TOOL (th)
+' 2026/9/28 - fix homing (th)
 
 '   - Core routine for swapping out tools
 '   - Called by C1(user) and other ATC Macros 
